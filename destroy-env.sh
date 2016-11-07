@@ -30,3 +30,4 @@ echo "Launch configuration deleted"
 echo "Deleting load-balancer"
 aws elb delete-load-balancer --load-balancer-name $3
 echo "Load-balancer deleted"
+fi
