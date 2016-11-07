@@ -6,7 +6,8 @@ echo "Requires 5 parameters to be passed to run this script"
 exit 0
 else
 echo "Creating 3 new instances"
-aws ec2 run-instances --image-id $1 --key-name $2 --security-group-ids $3 --instance-type t2.micro --user-data file://installapp.sh --count $5 --placement AvailabilityZone=us-west-2a
+aws ec2 run-instances --image-id $1 --key-name $2 --security-group-ids $3 --instance-type t2.micro --user-data file://installapp.sh --count $5 --placement AvailabilityZone=us-west-2a --iam-instance-profile Name="$6"
+
 echo "New Instances created"
 
 echo "Before Wait"
