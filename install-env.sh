@@ -32,10 +32,6 @@ echo "Creating Autoscaling Group"
 aws autoscaling create-auto-scaling-group --auto-scaling-group-name imageserverdemo --launch-configuration $4 --availability-zone us-west-2a --max-size 5 --min-size 0 --desired-capacity 1
 echo "After creating the Autoscaling Launch Configuration"
 
-echo "Creating Autoscaling Group"
-aws autoscaling create-auto-scaling-group --auto-scaling-group-name imageserverdemo --launch-configuration imageserver --availability-zone us-west-2a --max-size 5 --min-size 0 --desired-capacity 1
-echo "After creating AutoScaling Group Created"
-
 echo "Attaching created instances to auto scaling group"
 aws autoscaling attach-instances --instance-ids $instance_id --auto-scaling-group-name imageserverdemo
 echo "After attaching Instances to auto-scaling-group"
