@@ -6,9 +6,9 @@ echo "Hello" > /home/ubuntu/hello.txt
 
 
 
-sudo apt-get update -y
+run-one-until-success sudo apt-get update -y
 
-sudo apt-get install -y apache2 php-xml php php-mysql curl zip unzip git php7.0-xml libapache2-mod-php php7.0-cli
+run-one-until-success sudo apt-get install -y apache2 php-xml php php-mysql curl zip unzip git php7.0-xml libapache2-mod-php php7.0-cli
 
 export COMPOSER_HOME=/root && /usr/bin/composer.phar self-update 1.0.0-alpha11
 curl -sS https://getcomposer.org/installer | php
