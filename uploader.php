@@ -9,11 +9,7 @@ $s3 = new Aws\S3\S3Client([
 ]);
 
 
-
-
-// have to hard code this here because index.php doesn't exist
-$_SESSION['email'] = "vhemanth@hawk.iit.edu";
-echo "\n" . $_SESSION['email'] ."\n";
+echo "\n" . $_SESSION['userid'] ."\n";
 
 // Retrieve the POSTED file information (location, name, etc, etc)
 
@@ -42,6 +38,7 @@ $s3result = $s3->putObject([
 ]);
 $url=$s3result['ObjectURL'];
 echo "\n". "This is your URL: " . $url ."\n";
+
 // INSERT SQL record of job information
 $rdsclient = new Aws\Rds\RdsClient([
   'region'            => 'us-west-2',
@@ -55,7 +52,6 @@ $rdsresult = $rdsclient->describeDBInstances([
 
 
 $endpoint = $rdsresult['DBInstances'][0]['Endpoint']['Address'];
-echo $endpoint . "\n";
 
 $link = mysqli_connect($endpoint,"kbryant","arizzo44","school") or die("Error " . mysqli_error($link));
 
@@ -69,17 +65,18 @@ if (mysqli_connect_errno()) {
 
 // code to insert new record
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO items(id, email, phone, filename, s3rawurl, s3finishedurl, status, issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO records(id, email, phone, s3rawurl, s3finishedurl, issubscribed, status, receipt) VALUES (NULL,?,?,?,?,?,?,?)"))) {
     echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
 }
-$email=$_SESSION['email'];
+$email=$_SESSION['userid'];
 $phone='1234567';
-$finishedurl=' ';
-$status=0;
+$s3rawurl=$url;
+$s3finishedurl=' ';
 $issubscribed=0;
+$status=0;
 $receipt=md5($url);
 // prepared statements will not accept literals (pass by reference) in bind_params, you need to declare variables
-$stmt->bind_param("sssssii",$email,$phone,$receipt,$url,$finishedurl,$status,$issubscribed);
+$stmt->bind_param("ssssiis",$email,$phone,$s3rawurl,$s3finishedurl,$issubscribed,$status,$receipt);
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
@@ -92,9 +89,8 @@ printf("%d Row inserted.\n", $stmt->affected_rows);
 $stmt->close();
 
 
-// SELECT *
 
-$link->real_query("SELECT * FROM items");
+$link->real_query("SELECT * FROM records");
 $res = $link->use_result();
 
 echo "Result set order...\n";
@@ -109,8 +105,32 @@ $link->close();
 
 
 // PUT MD5 hash of raw URL to SQS QUEUE
+$sqsclient = new Aws\Sqs\SqsClient([
+    'region'  => 'us-west-2',
+    'version' => 'latest'
+]);
+
+// Code to retrieve the Queue URLs
+$sqsresult = $sqsclient->getQueueUrl([
+    'QueueName' => 'vh_cubs', // REQUIRED
+]);
+
+echo "</br>";
+
+$queueUrl = $sqsresult->get('QueueUrl');
+echo "This is the SQS URL: $queueUrl";
+echo "</br>";
 
 
+$sqsresult = $sqsclient->sendMessage([
+    'MessageBody' => $receipt, // REQUIRED
+    'QueueUrl' => $queueUrl // REQUIRED
+]);
 
+echo "Message Id:" . $sqsresult['MessageId'];
 
 ?>
+<br>
+<br>
+<br>
+<a href="upload.php?Back=1"> Back</a>
