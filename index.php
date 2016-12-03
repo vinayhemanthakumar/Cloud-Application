@@ -21,9 +21,41 @@ $create_table = 'CREATE TABLE IF NOT EXISTS Login
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY(username)
 )';
+$create_table1 = 'CREATE TABLE IF NOT EXISTS records
+(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(32),
+        phone VARCHAR(32),
+        s3rawurl VARCHAR(255),
+        s3finishedurl VARCHAR(255),
+        issubscribed INT(2),
+        status INT(1),
+        receipt VARCHAR(255)
+)';
 $create_tbl = $link->query($create_table);
+$create_tbl1 = $link->query($create_table1);
 if ($create_table) {
-        echo "<b>Table is created successfully</b>";
+        echo "<b>Table Login is created successfully</b>";
+        echo "</br>";
+}
+else {
+        echo "error!!";
+}
+if ($create_table1) {
+        echo "<b>Table records is created successfully</b>";
+        echo "</br>";
+}
+else {
+        echo "error!!";
+}
+$create_table2 = 'CREATE TABLE IF NOT EXISTS uploadctrl
+(
+    upload_btn INT(2),
+    id INT(2)
+)';
+$create_tbl2 = $link->query($create_table2);
+if ($create_table2) {
+        echo "<b>Table Upload Ctrl is created successfully</b>";
         echo "</br>";
 }
 else {
@@ -32,19 +64,18 @@ else {
 //Deleting Records
 $sql = "delete FROM Login";
 if ($link->query($sql) === TRUE) {
-  // Do Nothing
+//   Do Nothing
 } else {
     echo "Error while deleting: " . $sql . "<br>" . $link->error;
 }
 //Adding Records
-$sql = "INSERT INTO Login (username, password)
-VALUES ('vhemanth@hawk.iit.edu','password')";
+$sql = "INSERT INTO Login (username, password) VALUES ('vhemanth@hawk.iit.edu','password'), ('jhajek@iit.edu','password'), ('controller','password')";
 if ($link->query($sql) === TRUE) {
     echo "New record is inserted successfully:\n";
 } else {
     echo "Error: " . $sql . "<br>" . $link->error;
 }
-
+session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 $username = mysqli_real_escape_string($link,$_POST['username']);
 $password = mysqli_real_escape_string($link,$_POST['password']);
@@ -53,7 +84,7 @@ $result = mysqli_query($link,$query)or die(mysqli_error());
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 $active = $row['active'];
 $num_row = mysqli_num_rows($result);
-if( $num_row == 1 )
+if( $num_row > 0 )
    {
         echo "logged in";
         $_SESSION['userid']=$username;
