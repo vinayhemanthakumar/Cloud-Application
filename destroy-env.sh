@@ -55,4 +55,3 @@ aws sns delete-topic --topic-arn $ARN
 URL=`aws sqs get-queue-url --queue-name vh_cubs --query 'QueueUrl' | cut -d\" -f2`
 aws sqs delete-queue --queue-url $URL
 
-fi
