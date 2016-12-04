@@ -84,8 +84,6 @@ if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 }
 
-//printf("%d Row inserted.\n", $stmt->affected_rows);
-
 
 /* explicit close recommended */
 $stmt->close();
@@ -95,7 +93,6 @@ $stmt->close();
 $link->real_query("SELECT * FROM records");
 $res = $link->use_result();
 
-//echo "Result set order...\n";
 while ($row = $res->fetch_assoc()) {
 //    echo " id = " . $row['id'] . "\n";
 }
@@ -139,8 +136,8 @@ echo "This is the Message Id:" . $sqsresult['MessageId'];
 <html>
 <style>
 body {
- color: navy;
+ color: black;
  background-color: SkyBlue;
- font-family: Arial, Helvetica, sans-serif ;
+ font-family: "Comic Sans MS", cursive, sans-serif;
  }
 </style>
