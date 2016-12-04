@@ -29,7 +29,7 @@ $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
 $restore_file  = "/var/tmp/backup.sql";
 $username      = "kbryant";
 $password      = "arizzo44";
-$database_name = "vinaydb";
+$database_name = "school";
 
 $cmd = "mysql -h {$endpoint} -u {$username} -p{$password} {$database_name} < $restore_file";
 exec($cmd);
