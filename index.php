@@ -35,14 +35,12 @@ $create_table1 = 'CREATE TABLE IF NOT EXISTS records
 $create_tbl = $link->query($create_table);
 $create_tbl1 = $link->query($create_table1);
 if ($create_table) {
-     //   echo "<b>Table Login is created successfully</b>";
         echo "</br>";
 }
 else {
         echo "error!!";
 }
 if ($create_table1) {
-     //   echo "<b>Table records is created successfully</b>";
         echo "</br>";
 }
 else {
@@ -55,7 +53,6 @@ $create_table2 = 'CREATE TABLE IF NOT EXISTS uploadctrl
 )';
 $create_tbl2 = $link->query($create_table2);
 if ($create_table2) {
-     //   echo "<b>Table Upload Ctrl is created successfully</b>";
         echo "</br>";
 }
 else {
@@ -116,9 +113,9 @@ $link->close();
 <html>
 <style>
 body {
- color: navy;
+ color: black;
  background-color: SkyBlue;
- font-family: Arial, Helvetica, sans-serif ;
+ font-family: "Comic Sans MS", cursive, sans-serif;
  }
 </style>
 <form id='login' action='index.php' method='post' accept-charset='UTF-8'>
