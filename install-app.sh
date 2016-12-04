@@ -31,3 +31,21 @@ sudo cp /vinayhemanthakumar/switchonarex.png /var/www/html
 sudo cp /vinayhemanthakumar/s3test.php /var/www/html
 
 sudo cp /vinayhemanthakumar/dbtest.php /var/www/html
+
+sudo cp /vinayhemanthakumar/index.php /var/www/html
+
+sudo cp /vinayhemanthakumar/welcome.php /var/www/html
+
+sudo cp /vinayhemanthakumar/upload.php /var/www/html
+
+sudo cp /vinayhemanthakumar/uploader.php /var/www/html 
+
+sudo cp /vinayhemanthakumar/gallery.php /var/www/html
+
+sudo cp /vinayhemanthakumar/admin.php /var/www/html
+
+sudo cp /vinayhemanthakumar/edit.php /var/www/html
+
+sudo cp /vinayhemanthakumar/dbbackup.php /var/www/html
+
+sudo cp /vinayhemanthakumar/IIT-logo.png /var/www/html
