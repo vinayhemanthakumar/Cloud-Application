@@ -5,9 +5,9 @@ $username=$_SESSION['userid'];
 <html>
 <style>
 body {
- color: navy;
+ color: black;
  background-color: SkyBlue;
- font-family: Arial, Helvetica, sans-serif ;
+ font-family: "Comic Sans MS", cursive, sans-serif;
  }
 </style>
 <head><title>WELCOME TO UPLOAD PAGE</title></head>
