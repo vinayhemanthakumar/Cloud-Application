@@ -27,7 +27,7 @@ $result = $client->describeDBInstances(array(
     'DBInstanceIdentifier' => 'vinaydb',
 ));
 $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
-$res=exec('mysqldump --user=kbryant --password=arizzo44 --host=$endpoint vinaydb -P 3306  > /var/tmp/backup.sql'
+$res=exec('mysqldump --user=kbryant --password=arizzo44 --host='.$endpoint.' school -P 3306  > /var/tmp/backup.sql'
 );
 if($res=='')
 {
