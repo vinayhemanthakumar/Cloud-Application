@@ -70,7 +70,6 @@ $result = $client->describeDBInstances(array(
 
 $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
 
-//echo "begin database";
 $link = mysqli_connect($endpoint,"kbryant","arizzo44","school") or die("Error " . mysqli_error($link));
 
 /* check connection */
@@ -92,7 +91,6 @@ while ($row = $res->fetch_assoc()) {
 if($i<4){
                 echo "<td><a href=\" " . $row['s3rawurl'] . "\" data-gallery><img src =\" " . $row['s3rawurl'] . "\" height='200' width='300' class='img-rounded'></a></br>"
 ;
-                // echo "<b>".$row['id']."." . "Email: " . $row['email'];
 $i = $i + 1;
 if($i==4){
         echo "</tr><tr>";
