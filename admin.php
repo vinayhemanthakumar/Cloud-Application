@@ -1,6 +1,14 @@
 <html>
-<head>
 <body>
+<h1>ADMIN PAGE</h1>
+<style>
+body {
+ color: navy;
+ background-color: SkyBlue;
+ font-family: Arial, Helvetica, sans-serif ;
+ }
+</style><F11>
+<head>
 <form action = "" method = "post">
 Image Upload
 <select name="upload_select_status">
@@ -16,6 +24,8 @@ Image Upload
 <a href="gallery.php"> Gallery </a>
 <br/><br/>
 <a href="backup.php"> Backup DB </a>
+<br/><br/>
+<a href="restore.php"> Restore DB </a>
 <br/><br/>
 <a href="index.php"> Logout </a>
 </head>
@@ -40,7 +50,6 @@ if (mysqli_connect_errno()) {
 $upload_status=$_POST["upload_select_status"];
 if ( $upload_status == "On" )
 {
-echo "\n Upload Button On";
 $sql_update_status="update uploadctrl set upload_btn=1 where id=1";
 }
 elseif ($upload_status == "blank" )
@@ -49,12 +58,11 @@ $sql_update_status="select upload_btn from uploadctrl where id=1";
 }
 elseif ($upload_status == "Off" )
 {
-echo "Upload Button Off";
 $sql_update_status="update uploadctrl set upload_btn=0 where id=1";
 }
 if ($link->query($sql_update_status) === TRUE) {
 //    echo "Record updated successfully";
 } else {
-    echo "Error updating record: " . $conn->error;
+  //  echo "Error updating record: " . $conn->error;
 }
 ?>
