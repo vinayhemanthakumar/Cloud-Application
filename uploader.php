@@ -6,10 +6,13 @@ require 'vendor/autoload.php';
 $s3 = new Aws\S3\S3Client([
     'version' => 'latest',
     'region'  => 'us-west-2'
-]);
+]);?>
+<html>
+<body>
+<h1>UPLOADER</h1>
+</body>
 
-
-echo "\n" . $_SESSION['userid'] ."\n";
+<?php
 
 // Retrieve the POSTED file information (location, name, etc, etc)
 
@@ -18,13 +21,12 @@ $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
 #echo '<pre>';
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    echo "File is valid, and was successfully uploaded.\n";
+    echo "File is valid and was successfully uploaded.\n";
+    echo  "<br>";
 } else {
     echo "Possible file upload attack!\n";
 }
 
-echo 'Here is some more debugging info:';
-print_r($_FILES);
 
 // Upload file to S3 bucket
 $s3result = $s3->putObject([
@@ -82,7 +84,7 @@ if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 }
 
-printf("%d Row inserted.\n", $stmt->affected_rows);
+//printf("%d Row inserted.\n", $stmt->affected_rows);
 
 
 /* explicit close recommended */
@@ -93,9 +95,9 @@ $stmt->close();
 $link->real_query("SELECT * FROM records");
 $res = $link->use_result();
 
-echo "Result set order...\n";
+//echo "Result set order...\n";
 while ($row = $res->fetch_assoc()) {
-    echo " id = " . $row['id'] . "\n";
+//    echo " id = " . $row['id'] . "\n";
 }
 
 
@@ -127,10 +129,18 @@ $sqsresult = $sqsclient->sendMessage([
     'QueueUrl' => $queueUrl // REQUIRED
 ]);
 
-echo "Message Id:" . $sqsresult['MessageId'];
+echo "This is the Message Id:" . $sqsresult['MessageId'];
 
 ?>
 <br>
 <br>
 <br>
 <a href="upload.php?Back=1"> Back</a>
+<html>
+<style>
+body {
+ color: navy;
+ background-color: SkyBlue;
+ font-family: Arial, Helvetica, sans-serif ;
+ }
+</style>
