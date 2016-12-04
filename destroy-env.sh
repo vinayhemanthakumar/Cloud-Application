@@ -17,6 +17,9 @@ echo "Set desired capacity to 0"
 aws autoscaling set-desired-capacity --auto-scaling-group-name $autoscalingGrpName --desired-capacity 0
 echo "Desired capacity set to 0"
 
+cron_instance=$(aws ec2 describe-instances  --query 'Reservations[*].Instances[].InstanceId' --filter "Name=instance-state-name, Values=running")
+aws ec2 terminate-instances --instance-ids $cron_instance
+
 echo "Wait until the instances are terminated"
 echo $instance_id
 aws ec2 wait instance-terminated --instance-ids $instance_id
