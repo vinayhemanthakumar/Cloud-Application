@@ -30,4 +30,24 @@ echo "Launch configuration deleted"
 echo "Deleting load-balancer"
 aws elb delete-load-balancer --load-balancer-name $3
 echo "Load-balancer deleted"
+
+#delete-database instance
+aws rds delete-db-instance --db-instance-identifier vinaydb-readreplica --skip-final-snapshot
+echo "Waiting for database to be terminated"
+aws rds wait db-instance-deleted --db-instance-identifier vinaydb-readreplica
+aws rds delete-db-instance --db-instance-identifier vinaydb --skip-final-snapshot
+aws rds wait db-instance-deleted --db-instance-identifier vinaydb
+
+#delete s3 bucket
+aws s3 rb s3://raw-vin --force
+aws s3 rb s3://raw-hem --force
+
+#delete sns topic
+ARN=`aws sns list-topics --query 'Topics[*]'.'TopicArn' | cut -d\" -f2`
+aws sns delete-topic --topic-arn $ARN
+
+#delete sqs queue
+URL=`aws sqs get-queue-url --queue-name vh_cubs --query 'QueueUrl' | cut -d\" -f2`
+aws sqs delete-queue --queue-url $URL
+
 fi
