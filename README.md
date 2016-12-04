@@ -10,7 +10,7 @@ Step 2: Run the "install-env.sh" and give 6 positional parameters which are AMI 
 Step 3: Login credentials for index.php are all listed below: Admin is the "controller" and the users being "hajek@iit.edu" and "vhemanth@hawk.iit.edu"
 	i.controller: username is controller and password is password 
 	ii.Username: vhemanth@hawk.iit.edu and password is password
-	iii.Username: jhajek@iit.edu and password is password
+	iii.Username: hajek@iit.edu and password is password
 
 Step 4. Welcome.php is the next page which is navigated from the login page based on the kind of user. If there is an admin login then an additional link for admin is provided.
 
