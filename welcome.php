@@ -3,7 +3,6 @@ session_start();
 $username = $_SESSION['userid'];
 echo "WELCOME PAGE";
 echo "</br>";
-echo "Your username is: " . $username . "\n";
 require 'vendor/autoload.php';
 use Aws\Rds\RdsClient;
 $client = RdsClient::factory(array(
@@ -14,7 +13,6 @@ $result = $client->describeDBInstances(array(
     'DBInstanceIdentifier' => 'vinaydb',
 ));
 $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
-print_r($endpoint);
 echo "<br/>";
 echo "<br/>";
 $link = mysqli_connect($endpoint,"kbryant","arizzo44","school",3306) or die("Error " . mysqli_error($link));
@@ -33,6 +31,13 @@ while ($row = $result->fetch_assoc()) {
 $link->close();
 ?>
 <html>
+<style>
+body {
+ color: navy;
+ background-color: SkyBlue;
+ font-family: Arial, Helvetica, sans-serif ;
+ }
+</style>
         <head>
                 <title>Welcome.php</title>
         </head>
