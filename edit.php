@@ -108,7 +108,7 @@ $resultimg = $s3->putObject(array(
     'ContentType' => 'image.png'
 ));
 
-$s3finurl= $resultimg['ObjectURL'] . "<br>";
+$s3finurl= $resultimg['ObjectURL'];
 
 echo "</br>";
 echo $s3finurl;
