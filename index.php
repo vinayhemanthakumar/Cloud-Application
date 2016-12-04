@@ -96,6 +96,21 @@ else
    }
 
 }
+//Adding record to uploadctrl
+$query1 = "SELECT * FROM uploadctrl";
+$res = mysqli_query($link,$query1)or die(mysqli_error());
+$row_num = mysqli_num_rows($res);
+if( $row_num == 0 )
+   {
+        $sql = "Insert into uploadctrl values (1,1)";
+        if ($link->query($sql) === TRUE) {
+                echo "New record is inserted successfully:\n";
+        } else {
+                        echo "Error: " . $sql . "<br>" . $link->error;
+        }
+  } else {
+             echo "Record is already inserted";
+  }
 $link->close();
 ?>
 <form id='login' action='index.php' method='post' accept-charset='UTF-8'>
