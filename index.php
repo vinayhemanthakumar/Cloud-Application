@@ -69,7 +69,7 @@ if ($link->query($sql) === TRUE) {
     echo "Error while deleting: " . $sql . "<br>" . $link->error;
 }
 //Adding Records
-$sql = "INSERT INTO Login (username, password) VALUES ('vhemanth@hawk.iit.edu','password'), ('jhajek@iit.edu','password'), ('controller','password')";
+$sql = "INSERT INTO Login (username, password) VALUES ('vhemanth@hawk.iit.edu','password'), ('hajek@iit.edu','password'), ('controller','password')";
 if ($link->query($sql) === TRUE) {
   //  echo "New record is inserted successfully:\n";
 } else {
