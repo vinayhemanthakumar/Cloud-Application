@@ -9,6 +9,9 @@ echo "Creating DB instance"
 aws rds create-db-instance --db-instance-identifier vinaydb --db-instance-class db.t1.micro --engine MySQL --master-username kbryant --master-user-password arizzo44 --allocated-storage 20 --db-name school
 aws rds wait db-instance-available --db-instance-identifier vinaydb
 echo "DB instance created"
+
+aws rds create-db-instance-read-replica --db-instance-identifier vinaydb-readreplica --source-db-instance-identifier vinaydb
+
 echo "Creating SNS Topic"
 aws sns create-topic --name vh_worldseries
 echo "Creating SQS Queue"
