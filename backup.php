@@ -5,9 +5,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
 <style>
 body {
- color: navy;
+ color: black;
  background-color: SkyBlue;
- font-family: Arial, Helvetica, sans-serif ;
+ font-family:"Comic Sans MS", cursive, sans-serif;
  }
 </style>
 <body>
