@@ -3,14 +3,14 @@
 <h1>ADMIN PAGE</h1>
 <style>
 body {
- color: navy;
+ color:black;
  background-color: SkyBlue;
- font-family: Arial, Helvetica, sans-serif ;
+ font-family:"Comic Sans MS", cursive, sans-serif;
  }
-</style><F11>
+</style>
 <head>
 <form action = "" method = "post">
-Image Upload
+Image Upload Feature
 <select name="upload_select_status">
   <option value="blank"> </option>
   <option value="On">ON</option>
@@ -41,7 +41,6 @@ $result = $client->describeDBInstances(array(
     'DBInstanceIdentifier' => 'vinaydb',
 ));
 $endpoint = $result['DBInstances'][0]['Endpoint']['Address'];
-//print_r($endpoint);
 $link = mysqli_connect($endpoint,"kbryant","arizzo44","school",3306) or die("Error " . mysqli_error($link));
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
@@ -61,7 +60,7 @@ elseif ($upload_status == "Off" )
 $sql_update_status="update uploadctrl set upload_btn=0 where id=1";
 }
 if ($link->query($sql_update_status) === TRUE) {
-//    echo "Record updated successfully";
+   // Do nothing
 } else {
   //  echo "Error updating record: " . $conn->error;
 }
