@@ -35,14 +35,14 @@ $create_table1 = 'CREATE TABLE IF NOT EXISTS records
 $create_tbl = $link->query($create_table);
 $create_tbl1 = $link->query($create_table1);
 if ($create_table) {
-        echo "<b>Table Login is created successfully</b>";
+     //   echo "<b>Table Login is created successfully</b>";
         echo "</br>";
 }
 else {
         echo "error!!";
 }
 if ($create_table1) {
-        echo "<b>Table records is created successfully</b>";
+     //   echo "<b>Table records is created successfully</b>";
         echo "</br>";
 }
 else {
@@ -55,7 +55,7 @@ $create_table2 = 'CREATE TABLE IF NOT EXISTS uploadctrl
 )';
 $create_tbl2 = $link->query($create_table2);
 if ($create_table2) {
-        echo "<b>Table Upload Ctrl is created successfully</b>";
+     //   echo "<b>Table Upload Ctrl is created successfully</b>";
         echo "</br>";
 }
 else {
@@ -71,7 +71,7 @@ if ($link->query($sql) === TRUE) {
 //Adding Records
 $sql = "INSERT INTO Login (username, password) VALUES ('vhemanth@hawk.iit.edu','password'), ('jhajek@iit.edu','password'), ('controller','password')";
 if ($link->query($sql) === TRUE) {
-    echo "New record is inserted successfully:\n";
+  //  echo "New record is inserted successfully:\n";
 } else {
     echo "Error: " . $sql . "<br>" . $link->error;
 }
@@ -104,15 +104,23 @@ if( $row_num == 0 )
    {
         $sql = "Insert into uploadctrl values (1,1)";
         if ($link->query($sql) === TRUE) {
-                echo "New record is inserted successfully:\n";
+        //      echo "New record is inserted successfully:\n";
         } else {
                         echo "Error: " . $sql . "<br>" . $link->error;
         }
   } else {
-             echo "Record is already inserted";
+          //   echo "Record is already inserted";
   }
 $link->close();
 ?>
+<html>
+<style>
+body {
+ color: navy;
+ background-color: SkyBlue;
+ font-family: Arial, Helvetica, sans-serif ;
+ }
+</style>
 <form id='login' action='index.php' method='post' accept-charset='UTF-8'>
 <fieldset >
 <h1>Login Page</h1>
