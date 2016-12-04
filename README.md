@@ -5,7 +5,7 @@ Instruction to run scripts:
 
 Step 1: Run the "install-app-env.sh" script with the two bucket names mentioned as positional parameters.
 
-Step 2: Run the "install-env.sh" and give 6 positional parameters which are AMI ID, key-name, security-group, launch-configuration, count and IAM role name.
+Step 2: Run the "install-env.sh" with 8 positional parameters which are AMI ID, key-name, security-group, launch-configuration, count, IAM role name, load-balancer-name and auto-scaling-group-name.
 
 Step 3: Login credentials for index.php are all listed below: Admin is the "controller" and the users being "hajek@iit.edu" and "vhemanth@hawk.iit.edu"
 	i.controller: username is controller and password is password 
@@ -22,4 +22,4 @@ Step 7. Uploader.php will retrieve all the information from the database and wil
 
 Step 8. Admin.php has an feature for "on or off" which will turn off the upload feature. In the Admin.php, it also has a reference button to take the backup of database which will call backup.php and open a dialog box to save the .sql file
 
-Step 9. In the edit.php it will process the image and place the watermark on the image that we already have it in s3 bucket.
+Step 9. After the image has been uploaded by the user,the edit.php gets executed as a part of cron job process with the image and place the watermark on the image that we already have it in s3 bucket as a processed image.
