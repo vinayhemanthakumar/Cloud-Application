@@ -1,9 +1,15 @@
 <?php
 session_start();
 $username=$_SESSION['userid'];
-echo "\n" . $_SESSION['userid'] ."\n";
 ?>
 <html>
+<style>
+body {
+ color: navy;
+ background-color: SkyBlue;
+ font-family: Arial, Helvetica, sans-serif ;
+ }
+</style>
 <head><title>WELCOME TO UPLOAD PAGE</title></head>
 <body>
 <h1>UPLOAD</h1>
